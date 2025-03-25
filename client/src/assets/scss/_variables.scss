@@ -1,18 +1,18 @@
 $body-bg: #fff;
 $body-bg-dark: #1b1f22;
 $theme-colors: (
-  "primary": #0e6efd,
+  "primary": #5044de,
   "secondary": #aeb2b6,
-  "success": #198754,
+  "success": #59a369,
   "info": #0ccaf0,
   "warning": #ffc105,
-  "danger": #dc3545,
+  "danger": #da4c0f,
   "dark": #212529,
-  "light": #f8f9fa,
+  "light": #f8f6ff,
   "body-bg": #fff,
   // Bootstrap extended colors
-  "gray": $gray-500,
-  "grey": $gray-500,
+  "gray": #484848,
+  "grey": #696969,
   "blue": $blue,
   "indigo":$indigo,
   "purple":$purple,
@@ -23,6 +23,8 @@ $theme-colors: (
   "green":$green,
   "teal": $teal,
   "cyan":$cyan,
+  "tertiary": #903286,
+  "quaternary": #3166b6,
   // Custom colors
   "codeworks": #141d2b,
   "vue": #42b883,
