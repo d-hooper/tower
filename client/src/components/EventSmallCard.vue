@@ -9,6 +9,7 @@ defineProps({
 
 
 <template>
+  <RouterLink :to="{name: 'EventDetails', params: {eventId: towerEvent.id}}">
   <div class="card mb-3 rounded-3" role="button" :title="`Details for the ${towerEvent.name} event`">
     <div class="event-cover-img rounded-top-3" :style="{ backgroundImage: `url(${towerEvent.coverImg})` }">
       <span></span>
@@ -21,6 +22,7 @@ defineProps({
       <p class="mb-0"># of people attending</p>
     </div>
   </div>
+  </RouterLink>
 </template>
 
 
@@ -33,7 +35,10 @@ defineProps({
 }
 
 .card:hover {
+  box-shadow: 3px 3px 30px var(--bs-codeworks);
+}
 
-  box-shadow: 5px 5px 10px var(--bs-primary);
+a {
+  text-decoration: none;
 }
 </style>

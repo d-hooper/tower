@@ -1,6 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
-import TowerEventSmallCard from '@/components/TowerEventSmallCard.vue';
+import EventSmallCard from '@/components/EventSmallCard.vue';
 import { towerEventsService } from '@/services/TowerEventsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
@@ -45,7 +45,7 @@ async function getAllTowerEvents() {
       </div>
     </div>
     <div class="row d-flex justify-content-evenly mt-3">
-      <div class="col-md-4">
+      <div class="col-sm-6 col-lg-4">
         <div class="d-flex justify-content-between bg-light rounded p-4">
           <span class="mdi mdi-magnify text-success fs-3 me-2"></span>
           <div>
@@ -54,7 +54,7 @@ async function getAllTowerEvents() {
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-sm-6 col-lg-4">
         <div class="d-flex justify-content-between bg-light rounded p-4" role="button">
           <span class="mdi mdi-plus text-success fs-3 me-2"></span>
           <div>
@@ -77,7 +77,7 @@ async function getAllTowerEvents() {
       <div class="col-12">
         <div class="row mt-3">
           <div v-for="towerEvent in towerEvents" :key="towerEvent.id" class="col-md-6 col-lg-4">
-            <TowerEventSmallCard :towerEvent="towerEvent" />
+            <EventSmallCard :towerEvent="towerEvent" />
           </div>
         </div>
       </div>
