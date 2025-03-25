@@ -1,0 +1,46 @@
+{
+  "folders": [
+    {
+      "path": "./.github",
+    },
+    {
+      "name": "client",
+      "path": "client"
+    },
+    {
+      "name": "server",
+      "path": "server"
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always",
+    },
+    "extensions": {
+      "recommendations": [
+        "dbaeumer.vscode-eslint"
+      ]
+    },
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#71bdf4",
+      "activityBar.background": "#71bdf4",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#ed1291",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "commandCenter.border": "#15202b99",
+      "sash.hoverBorder": "#71bdf4",
+      "statusBar.background": "#41a7f1",
+      "statusBar.foreground": "#15202b",
+      "statusBarItem.hoverBackground": "#1291ed",
+      "statusBarItem.remoteBackground": "#41a7f1",
+      "statusBarItem.remoteForeground": "#15202b",
+      "titleBar.activeBackground": "#41a7f1",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveBackground": "#41a7f199",
+      "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#41a7f1"
+  }
+}
