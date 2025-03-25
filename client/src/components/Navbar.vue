@@ -32,9 +32,6 @@ watch(theme, () => {
       <div class="collapse navbar-collapse " id="navbar-links">
         <ul class="navbar-nav">
           <li>
-            <RouterLink :to="{ name: 'About' }" class="btn text-green selectable">
-              About
-            </RouterLink>
           </li>
         </ul>
         <!-- LOGIN COMPONENT HERE -->
