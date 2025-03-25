@@ -20,5 +20,7 @@ TowerEventSchema.virtual('creator', {
   ref: 'Account',
   foreignField: '_id',
   justOne: true,
-  select: 'name picture'
+  options: {
+    select: 'name picture'
+  }
 })
