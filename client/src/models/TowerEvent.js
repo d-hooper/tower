@@ -3,7 +3,7 @@ export class TowerEvent {
     this.id = data.id
     this.creatorId = data.creatorId
     this.creator = data.creator
-    this.title = data.title
+    this.name = data.name
     this.description = data.description
     this.coverImg = data.coverImg
     this.location = data.location
