@@ -32,7 +32,7 @@ async function cancelTowerEvent() {
   <div v-if="towerEvent" class="row justify-content-center mt-4">
     <div class="col-12">
       <div id="cover-bg" class="text-center rounded-5 w-100" :style="{ backgroundImage: `url(${towerEvent.coverImg})` }">
-        <img :src="towerEvent.coverImg" alt="`Photo for the ${{  }}`" class="details-img">
+        <img :src="towerEvent.coverImg" :alt="`Photo for the ${towerEvent.name}`" class="details-img">
       </div>
     </div>
     <div class="col-md-6 col-lg-8">
@@ -41,7 +41,7 @@ async function cancelTowerEvent() {
           <div class="d-flex gap-2 align-items-center justify-content-between mb-3">
             <div class="d-flex gap-2 align-items-center">
               <h2 :class="`mb-0 ${towerEvent.isCanceled ? 'text-decoration-line-through' : ''}`">{{ towerEvent.name }}</h2>
-              <span class="py-1 px-2 bg-secondary text-info rounded-pill">{{ towerEvent.type }}</span>
+              <span class="px-2 bg-secondary text-info rounded-pill">{{ towerEvent.type }}</span>
             </div>
             <div @click="cancelTowerEvent()" v-if="account?.id == towerEvent.creatorId">
               <span class="mdi mdi-cancel fs-4 text-warning" :title="`${towerEvent.isCanceled ? 'Undo Cancellation' : 'Cancel Event'}`" role="button" >{{ towerEvent.isCanceled ? 'CANCELED' : ''}}</span>
@@ -101,7 +101,7 @@ async function cancelTowerEvent() {
 
 <style lang="scss" scoped>
 .details-img {
-  max-height: 40dvh;
+  max-height: 50dvh;
   background-repeat: initial;
   background-position: center;
   background-size: contain;
