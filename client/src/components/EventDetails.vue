@@ -1,24 +1,51 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import { towerEventsService } from '@/services/TowerEventsService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
 const towerEvent = computed(() => AppState.activeTowerEvent)
+const account = computed(() => AppState.account)
+const route = useRoute()
+
+
+async function cancelTowerEvent() {
+  try {
+   
+      const confirmed = await Pop.confirm(`Are you sure you want to ${towerEvent.value.isCanceled ? 'reinstate' : 'cancel'} this event?`, 'Note: This can be undone at a later time should you choose.', 'YES', 'NO')
+     if (!confirmed) { return }
+
+    const eventId = route.params.eventId
+    await towerEventsService.cancelTowerEvent(eventId)
+  }
+  catch (error) {
+    Pop.error(error, 'Could not cancel tower event');
+    logger.error('could not cancel tower event'.toUpperCase(), error);
+  }
+}
 </script>
 
 
 <template>
   <div v-if="towerEvent" class="row justify-content-center mt-4">
     <div class="col-12">
-      <div id="cover-bg" class="text-center rounded-5 w-100" :style="{ backgroundImage: `url(${towerEvent.coverImg})`}">
+      <div id="cover-bg" class="text-center rounded-5 w-100" :style="{ backgroundImage: `url(${towerEvent.coverImg})` }">
         <img :src="towerEvent.coverImg" alt="`Photo for the ${{  }}`" class="details-img">
       </div>
     </div>
     <div class="col-md-6 col-lg-8">
       <div class="mt-4">
         <div>
-          <div class="d-flex gap-2 align-items-center">
-            <h2 class="mb-0">{{ towerEvent.name }}</h2>
-            <span class="py-1 px-2 bg-secondary text-info rounded-pill">{{ towerEvent.type }}</span>
+          <div class="d-flex gap-2 align-items-center justify-content-between mb-3">
+            <div class="d-flex gap-2 align-items-center">
+              <h2 :class="`mb-0 ${towerEvent.isCanceled ? 'text-decoration-line-through' : ''}`">{{ towerEvent.name }}</h2>
+              <span class="py-1 px-2 bg-secondary text-info rounded-pill">{{ towerEvent.type }}</span>
+            </div>
+            <div @click="cancelTowerEvent()" v-if="account?.id == towerEvent.creatorId">
+              <span class="mdi mdi-cancel fs-4 text-warning" :title="`${towerEvent.isCanceled ? 'Undo Cancellation' : 'Cancel Event'}`" role="button" >{{ towerEvent.isCanceled ? 'CANCELED' : ''}}</span>
+            </div>
           </div>
           <div class="mb-2">
             <p class="mb-0">{{ towerEvent.description }}</p>
@@ -40,7 +67,7 @@ const towerEvent = computed(() => AppState.activeTowerEvent)
           <div class="my-2">
             <p class="fs-5 fw-bold">Comments</p>
             <div class="bg-light">
-              
+
               <!-- TODO Comment Form -->
 
               <!-- TODO Printed Comments w/ remove button for logged in user -->
@@ -79,5 +106,4 @@ const towerEvent = computed(() => AppState.activeTowerEvent)
   background-position: center;
   background-size: contain;
 }
-
 </style>

@@ -4,6 +4,7 @@ import { TowerEvent } from "@/models/TowerEvent.js"
 import { AppState } from "@/AppState.js"
 
 class TowerEventsService {
+ 
   
   async getAllTowerEvents() {
     const response = await api.get('api/events')
@@ -22,6 +23,12 @@ class TowerEventsService {
     const response = await api.post('api/events', eventData)
     const newTowerEvent = new TowerEvent(response.data)
     AppState.towerEvents.push(newTowerEvent)
+    return newTowerEvent
+  }
+  
+  async cancelTowerEvent(eventId) {
+    const response = await api.delete(`api/events/${eventId}`)
+    logger.log(response.data)
   }
 }
 

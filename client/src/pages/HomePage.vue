@@ -53,10 +53,10 @@ async function getAllTowerEvents() {
         <h2 class="fs-4 fw-bold">Explore Event Categories</h2>
       </div>
       <div class="col-xl-10">
-        <div class="row justify-content-evenly my-3">
+        <div class="row justify-content-evenly mt-3">
           <div @click="selectedFilter = eventFilter.name" v-for="eventFilter in eventFilters" :key="eventFilter.name"
-               class="col-md-2">
-            <div class="rounded bg-light text-center py-1 filter-button" type="button"
+               class="col-8 col-sm-6 col-md-2">
+            <div class="rounded bg-light text-center py-1 filter-button mb-3" type="button"
                  :style="{ borderColor: `var(--bs-${eventFilter.color}` }">
               <span :class="`mdi ${eventFilter.mdi} text-${eventFilter.color} fs-3`"></span>
               <p class="mb-0 fs-6 fw-bold text-capitalize">{{ eventFilter.name }}</p>

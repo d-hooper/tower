@@ -15,7 +15,10 @@ defineProps({
       <span></span>
     </div>
     <div class="ms-2 my-2">
-      <p class="mb-0 fw-bold fs-5">{{ towerEvent.name }}</p>
+      <div class="d-flex justify-content-between me-1">
+        <p :class="`mb-0 fw-bold fs-5 ${towerEvent.isCanceled ? 'text-decoration-line-through' : ''}`">{{ towerEvent.name }}</p>
+        <span v-if="towerEvent.isCanceled" class="bg-warning rounded-pill text-light px-2">Cancelled</span>
+      </div>
       <p class="mb-0">Hosted by {{ towerEvent.creator.name }}</p>
       <p class="mb-0">{{ towerEvent.startDate.toLocaleDateString() }}</p>
       <!-- TODO Add ticket count to page -->
