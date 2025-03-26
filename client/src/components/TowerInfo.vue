@@ -20,7 +20,7 @@
         </a>
       </div>
       <div class="col-sm-6 col-lg-4">
-        <div class="d-flex justify-content-between bg-light rounded p-4 mt-3 mb-4" role="button">
+        <div class="d-flex justify-content-between bg-light rounded p-4 mt-3 mb-4" role="button"  data-bs-toggle="modal" data-bs-target="#newEventModal">
           <span class="mdi mdi-plus text-success fs-3 me-2"></span>
           <div>
             <p class="mb-0 fs-5">Plan Your Own Event</p>
@@ -39,6 +39,10 @@
 a {
   text-decoration: none;
   color: var(--bs-dark)
+}
+
+[role='button']:hover {
+  box-shadow: 0px 0px 5px 5px var(--bs-success)
 }
 
 </style>
