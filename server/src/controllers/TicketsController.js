@@ -9,6 +9,7 @@ export class TicketsController extends BaseController {
     this.router
     .use(Auth0Provider.getAuthorizedUserInfo)
     .post('', this.reserveTicket)
+    .delete('/:ticketId', this.deleteReservedTicket)
     
   }
 
@@ -29,4 +30,23 @@ export class TicketsController extends BaseController {
       next(error)
     }
   }
+
+  /**
+ * Creates a new value from request body and returns the value
+ * @param {import("express").Request} request
+ * @param {import("express").Response} response
+ * @param {import("express").NextFunction} next
+ */
+  async deleteReservedTicket(request, response, next) {
+    try {
+      const userInfo = request.userInfo
+      const ticketId = request.params.ticketId
+      const message = await ticketsService.deleteReservedTicket(ticketId, userInfo)
+      response.send(message)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+
 }
