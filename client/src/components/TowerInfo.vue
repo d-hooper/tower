@@ -13,8 +13,11 @@
           <div class="d-flex justify-content-between bg-light rounded p-4 mt-3 mb-4" role="button">
             <span class="mdi mdi-magnify text-success fs-3 me-2"></span>
             <div>
-              <p class="mb-0 fs-5">Find Events that Match Your Interests</p>
+              <p class="mb-0 fs-5">Find Interesting Events</p>
               <p class="mb-0 fs-6">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quis fuga qui.</p>
+              <div class="mt-1">
+                <span class="text-success">Find an Event</span>
+              </div>
             </div>
           </div>
         </a>
@@ -26,7 +29,7 @@
             <p class="mb-0 fs-5">Plan Your Own Event</p>
             <p class="mb-0 fs-6">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quis fuga qui.</p>
             <div class="mt-1">
-              <span class="text-success mt-3">Create an Event</span>
+              <span class="text-success">Create an Event</span>
             </div>
           </div>
         </div>

@@ -2,12 +2,13 @@
 import { AppState } from '@/AppState.js';
 import EventSmallCard from '@/components/EventSmallCard.vue';
 import HeroSection from '@/components/HeroSection.vue';
-import NewEventModal from '@/components/NewEventModal.vue';
+import EventModal from '@/components/EventModal.vue';
 import TowerInfo from '@/components/TowerInfo.vue';
 import { towerEventsService } from '@/services/TowerEventsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted, ref } from 'vue';
+import EventForm from '@/components/EventForm.vue';
 
 const towerEvents = computed(() => {
   if (selectedFilter.value == 'all') {
@@ -77,7 +78,9 @@ async function getAllTowerEvents() {
       </div>
     </div>
   </section>
-  <NewEventModal />
+  <EventModal :modalTitle="'Create an Event'" :modalId="'newEventModal'">
+    <EventForm />
+  </EventModal>
 </template>
 
 <style scoped lang="scss">
