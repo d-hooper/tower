@@ -28,15 +28,8 @@ async function getTowerEventById() {
 
 <template>
   <section class="container">
-    <div class="row">
-      <div class="col-lg-10">
-        <h1>Event Details</h1>
-      </div>
-    </div>
-  </section>
-  <section class="container">
-    <div class="row">
-      <div class="col-12">
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
         <EventDetails/>
       </div>
     </div>
