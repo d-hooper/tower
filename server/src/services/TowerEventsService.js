@@ -6,7 +6,7 @@ class TowerEventsService {
   async getAllEvents() {
     const events = await dbContext.TowerEvents
       .find()
-      .populate('creator')
+      .populate('creator ticketCount')
       // .sort('startDate')
     return events
   }
@@ -14,7 +14,7 @@ class TowerEventsService {
   async getEventById(eventId) {
     const event = (await dbContext.TowerEvents
       .findById(eventId))
-      .populate('creator')
+      .populate('creator ticketCount')
 
     if (!event) {
       throw new BadRequest(`No Tower Event found with Id of ${eventId}`)
@@ -25,7 +25,7 @@ class TowerEventsService {
 
   async createEvent(eventData) {
     const event = await dbContext.TowerEvents.create(eventData)
-    await event.populate('creator')
+    await event.populate('creator ticketCount')
     return event
   }
 
