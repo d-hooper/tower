@@ -2,6 +2,7 @@ import { Auth0Provider } from "@bcwdev/auth0provider";
 import { towerEventsService } from "../services/TowerEventsService.js";
 import BaseController from "../utils/BaseController.js";
 import { ticketsService } from "../services/TicketsService.js";
+import { towerCommentsService } from "../services/TowerCommentsService.js";
 
 export class TowerEventsController extends BaseController {
   constructor() {
@@ -10,6 +11,7 @@ export class TowerEventsController extends BaseController {
     .get('', this.getAllEvents)
     .get('/:eventId', this.getEventById)
     .get('/:eventId/tickets', this.getTicketsByEventId)
+    .get('/:eventId/comments', this.getCommentsByEventId)
     .use(Auth0Provider.getAuthorizedUserInfo)
     .post('', this.createEvent)
     .put('/:eventId', this.editEvent)
@@ -63,6 +65,25 @@ export class TowerEventsController extends BaseController {
       const eventId = request.params.eventId
       const tickets = await ticketsService.getTicketsByEventId(eventId)
       response.send(tickets)
+    }
+    catch (error){
+      next(error);
+    }
+  }
+ 
+  /**
+ * Creates a new value from request body and returns the value
+ * @param {import("express").Request} request
+ * @param {import("express").Response} response
+ * @param {import("express").NextFunction} next
+ */
+
+  async getCommentsByEventId(request, response, next) {
+    try {
+      const eventId = request.params.eventId
+      const towerComments = await towerCommentsService.getCommentsByEventId(eventId)
+      response.send(towerComments)
+    
     }
     catch (error){
       next(error);
