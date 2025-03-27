@@ -1,18 +1,26 @@
-export class Account {
+
+
+export class Profile {
   /**
-   * @typedef AccountData
+   * @typedef ProfileData
    * @property {string} id
-   * @property {string} email
    * @property {string} name
    * @property {string} picture
    * 
-   * @param {AccountData} data
+   * @param {ProfileData} data
    */
   constructor(data) {
+
     this.id = data.id
-    this.email = data.email
-    this.name = data.name
     this.picture = data.picture
+    this.name = data.name
+  }
+}
+export class Account extends Profile {
+
+  constructor(data) {
+    super(data)
+    this.email = data.email
     // TODO add additional properties if needed
   }
 }

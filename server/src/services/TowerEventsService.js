@@ -37,7 +37,7 @@ class TowerEventsService {
     }
 
     if (event.isCanceled) {
-      throw new Forbidden(`IMPROPER INCLUSION OF 'isCanceled' IN EDIT REQUEST, USE A SPECIFIED CANCEL REQUEST`)
+      throw new BadRequest(`CANNOT EDIT CANCELED EVENTS`)
     }
 
     event.name = eventData.name ?? event.name

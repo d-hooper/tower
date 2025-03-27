@@ -7,6 +7,7 @@ export class TowerEvent {
     this.description = data.description
     this.coverImg = data.coverImg
     this.location = data.location
+    this.capacity = data.capacity
     this.type = data.type
     this.isCanceled = data.isCanceled
     this.ticketCount = data.ticketCount
