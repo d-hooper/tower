@@ -2,7 +2,7 @@
 import { AppState } from '@/AppState.js';
 import EventSmallCard from '@/components/EventSmallCard.vue';
 import HeroSection from '@/components/HeroSection.vue';
-import EventModal from '@/components/EventModal.vue';
+import TowerModal from '@/components/TowerModal.vue';
 import TowerInfo from '@/components/TowerInfo.vue';
 import { towerEventsService } from '@/services/TowerEventsService.js';
 import { logger } from '@/utils/Logger.js';
@@ -78,9 +78,9 @@ async function getAllTowerEvents() {
       </div>
     </div>
   </section>
-  <EventModal :modalTitle="'Create an Event'" :modalId="'newEventModal'">
+  <TowerModal :modalTitle="'Create an Event'" :modalId="'newEventModal'">
     <EventForm />
-  </EventModal>
+  </TowerModal>
 </template>
 
 <style scoped lang="scss">

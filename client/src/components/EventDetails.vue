@@ -7,6 +7,10 @@ import { useRoute } from 'vue-router';
 import EventDescription from './EventDescription.vue';
 import { ticketsService } from '@/services/TicketsService.js';
 import { towerEventsService } from '@/services/TowerEventsService.js';
+import CommentForm from './CommentForm.vue';
+import { towerCommentsService } from '@/services/TowerCommentsService.js';
+import ListedComments from './ListedComments.vue';
+
 
 const towerEvent = computed(() => AppState.activeTowerEvent)
 const account = computed(() => AppState.account)
@@ -18,7 +22,29 @@ const route = useRoute()
 
 onMounted(() => {
   getAttendees()
+  getComments()
 })
+
+async function getComments() {
+  try {
+    const eventId = route.params.eventId
+    await towerCommentsService.getComments(eventId)
+  }
+  catch (error) {
+    Pop.error(error, `Could not get comments for this event`);
+    logger.error(`Could not get comments for event`.toUpperCase(), error);
+  }
+}
+async function getAttendees() {
+  try {
+    const eventId = route.params.eventId
+    await towerEventsService.getTicketsByEventId(eventId)
+  }
+  catch (error) {
+    Pop.error(error, `Could not retrieve ticket data for this event`);
+    logger.error(`Could not retrieve ticket data for event`.toUpperCase(), error);
+  }
+}
 
 async function reserveTicket() {
   try {
@@ -32,16 +58,6 @@ async function reserveTicket() {
   }
 }
 
-async function getAttendees() {
-  try {
-    const eventId = route.params.eventId
-    await towerEventsService.getTicketsByEventId(eventId)
-  }
-  catch (error) {
-    Pop.error(error, `Could not reserve ticket for ${towerEvent.value.name}`);
-    logger.error(`Could not reserve ticket for ${towerEvent.value.name}`.toUpperCase(), error);
-  }
-}
 </script>
 
 
@@ -57,12 +73,9 @@ async function getAttendees() {
       <EventDescription />
       <div class="mt-5">
         <p class="fs-5 fw-bold">Comments</p>
-        <div class="bg-light">
-
-          <!-- TODO Comment Form -->
-
-          <!-- TODO Printed Comments w/ remove button for logged in user -->
-
+        <div class="bg-light rounded py-2 px-4 mb-4">
+          <CommentForm/>
+          <ListedComments/>
         </div>
       </div>
     </div>
@@ -74,7 +87,7 @@ async function getAttendees() {
         </div>
         <div v-else>
           <p class="fs-5 fw-bold text-gray">Interested in going?</p>
-          <p :class="`fs-6 ${remainingSpots == 0 ? ' text-warning' : ' text-gray'}`">{{ remainingSpots == 0 ? 'NO MORE TICKETS' : 'Grab a ticket'}}</p>
+          <p :class="`fs-6 ${remainingSpots == 0 ? ' text-warning' : ' text-gray'}`">{{ `${remainingSpots == 0 ? 'NO MORE TICKETS' : 'Grab a ticket'}`}}</p>
           <button @click="reserveTicket()" type="button" title="Reserve a ticket" class="btn btn-primary text-light"
                   :disabled="towerEvent.isCanceled || remainingSpots == 0">Reserve</button>
         </div>
