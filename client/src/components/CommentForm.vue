@@ -31,7 +31,7 @@ async function postComment() {
   <form @submit.prevent="postComment">
     <div class="form-floating my-3">
       <textarea v-model="editableCommentData.body" type="text" class="form-control" id="towerEventDescription"
-                placeholder="Event Details..." minlength="15" maxlength="1000" required>
+                placeholder="Event Details..." maxlength="1000" required>
               </textarea>
       <label for="towerEventDescription">Add to the conversation...</label>
     </div>

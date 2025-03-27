@@ -69,9 +69,9 @@ async function reserveTicket() {
         <img :src="towerEvent.coverImg" :alt="`Photo for the ${towerEvent.name}`" class="details-img">
       </div>
     </div>
-    <div class="col-md-6 col-lg-8">
+    <div class="col-lg-8">
       <EventDescription />
-      <div class="mt-5">
+      <div class="mt-4">
         <p class="fs-5 fw-bold">Comments</p>
         <div class="bg-light rounded py-2 px-4 mb-4">
           <CommentForm/>
@@ -79,8 +79,7 @@ async function reserveTicket() {
         </div>
       </div>
     </div>
-    <div class="col-md-1"></div>
-    <div class="col-10 col-sm-6 col-md-3">
+    <div class="col-10 col-sm-8 col-lg-4">
       <div class="bg-light text-center mt-4 py-3 px-1 rounded">
         <div v-if="hasTicket">
           <p class="mb-0 text-info">You have reserved a ticket.</p>
@@ -103,7 +102,7 @@ async function reserveTicket() {
         <div v-if="attendees.length > 0" class="bg-light py-3 px-1 rounded">
           <div v-for="attendee in attendees" :key="attendee.id"
                class="border-start border-3 border-success d-flex align-items-center gap-2 ms-2 mb-2 ps-2">
-            <img :src="attendee.profile.picture" :alt="attendee.profile.name" class="attendee-img">
+            <img :src="attendee.profile.picture" :alt="attendee.profile.name" class="round-img">
             <p class="mb-0">{{ attendee.profile.name }}</p>
           </div>
         </div>
@@ -125,11 +124,5 @@ async function reserveTicket() {
   background-position: center;
   background-size: contain;
   width: 65%
-}
-
-.attendee-img {
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  height: 2.5rem;
 }
 </style>

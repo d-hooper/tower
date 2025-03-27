@@ -62,5 +62,7 @@ async function cancelTowerEvent() {
 
 
 <style lang="scss" scoped>
-
+.mdi-cancel:hover {
+  text-shadow: 0px 0px 5px var(--bs-warning)
+}
 </style>
