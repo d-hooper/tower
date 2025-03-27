@@ -26,7 +26,7 @@ async function createTowerEvent() {
     const eventData = editableEventData.value
     const towerEvent = await towerEventsService.createTowerEvent(eventData)
     Modal.getOrCreateInstance('#newEventModal').hide()
-    router.push({ name: 'Event Details', params: { eventId: towerEvent.id } })
+    router.push({ name: 'EventDetails', params: { eventId: towerEvent.id } })
 
   }
   catch (error) {

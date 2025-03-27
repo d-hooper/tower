@@ -49,12 +49,12 @@ async function getMyTicketedEvents() {
         </div>
       </div>
       <div class="col-lg-10">
-        <div class="mt-5">
+        <div class="mt-5 mb-3">
           <h3 class="fs-4">Your Reserved Tickets</h3>
-          <div class="row">
-            <div v-for="ticketedEvent in ticketedEvents" :key="ticketedEvent.id" class="col-md-6">
+        </div>
+        <div class="row">
+          <div v-for="ticketedEvent in ticketedEvents" :key="ticketedEvent.id" class="col-md-6">
               <TicketedEventCard :ticket="ticketedEvent"/>
-            </div>
           </div>
         </div>
       </div>

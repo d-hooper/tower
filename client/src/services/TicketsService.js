@@ -9,6 +9,7 @@ class TicketsService {
     logger.log(response.data)
     const ticket = new Attendee(response.data)
     AppState.attendees.push(ticket)
+    AppState.activeTowerEvent.ticketCount++
   }
   
   async getTicketsByAccountId() {
@@ -24,7 +25,7 @@ class TicketsService {
     const ticketIndex = AppState.ticketedEvents.findIndex(ticket => ticket.id == ticketId)
     AppState.ticketedEvents.splice(ticketIndex, 1)
   }
-  
+
 }
 
 export const ticketsService = new TicketsService()

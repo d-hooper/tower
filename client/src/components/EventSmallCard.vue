@@ -3,8 +3,7 @@ import { TowerEvent } from '@/models/TowerEvent.js';
 
 defineProps({
   towerEvent: { type: TowerEvent, required: true }
-}
-)
+})
 </script>
 
 
@@ -15,14 +14,21 @@ defineProps({
       <span></span>
     </div>
     <div class="ms-2 my-2">
-      <div class="d-flex justify-content-between me-2">
-        <p :class="`mb-0 fw-bold fs-5 ${towerEvent.isCanceled ? 'text-decoration-line-through' : ''}`">{{ towerEvent.name }}</p>
-        <span v-if="towerEvent.isCanceled" class="bg-warning rounded-pill text-light px-2">Cancelled</span>
+      <div class="d-flex justify-content-between me-2 align-items-end">
+        <p class="mb-0 fw-bold fs-5">{{ towerEvent.name }}</p>
+        <div>
+          <span v-if="towerEvent.isCanceled" class="bg-warning rounded-pill text-light px-2">Cancelled</span>
+          <span v-if="towerEvent.ticketCount == towerEvent.capacity && !towerEvent.isCanceled" class="bg-danger rounded-pill text-light px-2">Sold Out</span>
+        </div>
       </div>
       <p class="mb-0">Hosted by {{ towerEvent.creator.name }}</p>
       <p class="mb-0 text-">{{ towerEvent.startDate.toLocaleDateString() }}</p>
       <!-- TODO Add ticket count to page -->
-      <p class="mb-0"># of people attending</p>
+      <p class="mb-0">
+        <span class="text-info fw-bold">
+          {{ towerEvent.ticketCount }}
+        </span>{{ towerEvent.ticketCount == 1 ? ' person ' : ' people ' }}
+        attending</p>
     </div>
   </div>
   </RouterLink>

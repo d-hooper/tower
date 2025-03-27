@@ -26,7 +26,7 @@ async function deleteTicket(ticketId) {
 
 <template>
   <RouterLink :to="{ name: 'EventDetails', params: { eventId: ticket.towerEvent.id } }">
-    <div class="rounded-top bg-light border-top border-start border-end border-primary p-2 mb-0 d-flex align-items-center">
+    <div class="rounded-top bg-light border-top border-start border-end border-primary p-2 mb-0 d-flex align-items-center" :title="`Details for the ${ticket.towerEvent.name} event`">
       <div class="ticket-img me-4">
         <img :src="ticket.towerEvent.coverImg" alt="" class="event-img rounded">
       </div>
