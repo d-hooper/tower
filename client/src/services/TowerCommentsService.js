@@ -13,7 +13,7 @@ class TowerCommentsService {
   async postComment(towerCommentData) {
     const response = await api.post('api/comments', towerCommentData)
     const comment = new TowerComment(response.data)
-    AppState.towerComments.push
+    AppState.towerComments.push(comment)
   }
   
 }
