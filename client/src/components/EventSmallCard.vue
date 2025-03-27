@@ -20,7 +20,7 @@ defineProps({
         <span v-if="towerEvent.isCanceled" class="bg-warning rounded-pill text-light px-2">Cancelled</span>
       </div>
       <p class="mb-0">Hosted by {{ towerEvent.creator.name }}</p>
-      <p class="mb-0">{{ towerEvent.startDate.toLocaleDateString() }}</p>
+      <p class="mb-0 text-">{{ towerEvent.startDate.toLocaleDateString() }}</p>
       <!-- TODO Add ticket count to page -->
       <p class="mb-0"># of people attending</p>
     </div>
@@ -41,7 +41,4 @@ defineProps({
   box-shadow: 3px 3px 30px var(--bs-codeworks);
 }
 
-a {
-  text-decoration: none;
-}
 </style>

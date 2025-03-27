@@ -9,7 +9,7 @@ import { ticketsService } from '@/services/TicketsService.js';
 
 const towerEvent = computed(() => AppState.activeTowerEvent)
 const account = computed(() => AppState.account)
-const tickets = computed(() => AppState.tickets)
+const attendees = computed(() => AppState.attendees)
 const remainingSpots = computed(() => (towerEvent.value.capacity - towerEvent.value.ticketCount) )
 const route = useRoute()
 
