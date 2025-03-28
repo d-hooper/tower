@@ -12,6 +12,10 @@ class TowerEventsService {
     const response = await api.get('api/events')
     const towerEvents = response.data.map(towerEvent => new TowerEvent(towerEvent))
     AppState.towerEvents = towerEvents
+    // const account = AppState.account
+    // const creatorEvents = towerEvents.filter(towerEvent => towerEvent.creatorId == account?.id)
+    // logger.log('creator events', AppState.creatorEvents)
+    // AppState.creatorEvents = creatorEvents
   }
   
   async getTowerEventById(eventId) {

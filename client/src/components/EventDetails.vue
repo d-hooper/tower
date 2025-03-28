@@ -62,10 +62,10 @@ async function reserveTicket() {
 
 
 <template>
-  <div v-if="towerEvent" class="row justify-content-center mt-4">
+  <div v-if="towerEvent" :class="`row mt-4  ${towerEvent.isCanceled ? 'justify-content-start' : 'justify-content-center'}`">
     <div class="col-12">
       <div id="cover-bg" class="text-center rounded-5 w-100"
-           :style="{ backgroundImage: `url(${towerEvent.coverImg})` }">
+           :style=" `--bg-url: url(${towerEvent.coverImg});`">
         <img :src="towerEvent.coverImg" :alt="`Photo for the ${towerEvent.name}`" class="details-img">
       </div>
     </div>
@@ -74,12 +74,12 @@ async function reserveTicket() {
       <div class="mt-4">
         <p class="fs-5 fw-bold">Comments</p>
         <div class="bg-light rounded py-2 px-4 mb-4">
-          <CommentForm/>
+          <CommentForm />
           <ListedComments/>
         </div>
       </div>
     </div>
-    <div class="col-10 col-sm-8 col-lg-4">
+    <div v-if="!towerEvent.isCanceled" class="col-10 col-sm-8 col-lg-4">
       <div class="bg-light text-center mt-4 py-3 px-1 rounded">
         <div v-if="hasTicket">
           <p class="mb-0 text-info">You have reserved a ticket.</p>
@@ -88,10 +88,10 @@ async function reserveTicket() {
           <p class="fs-5 fw-bold text-gray">Interested in going?</p>
           <p :class="`fs-6 ${remainingSpots == 0 ? ' text-warning' : ' text-gray'}`">{{ `${remainingSpots == 0 ? 'NO MORE TICKETS' : 'Grab a ticket'}`}}</p>
           <button @click="reserveTicket()" type="button" title="Reserve a ticket" class="btn btn-primary text-light"
-                  :disabled="towerEvent.isCanceled || remainingSpots == 0">Reserve</button>
+                  :disabled="!account || towerEvent.isCanceled || remainingSpots == 0">Reserve</button>
         </div>
       </div>
-      <p class="mb-0 text-end">
+      <p v-if="!towerEvent.isCanceled" class="mb-0 text-end">
         <span :class="`${remainingSpots == 0 ? 'text-warning' : 'text-success'}`">
           {{ remainingSpots }}
         </span>
@@ -124,5 +124,48 @@ async function reserveTicket() {
   background-position: center;
   background-size: contain;
   width: 65%
+}
+
+// .mdi:hover{
+// position: relative;
+// ::after{
+//   display: inline-block;
+//   transition: all .2s ease;
+//   opacity: 0;
+//   // transform: translate(50% -10px);
+
+// }
+// &::after{
+//   opacity: 1;
+//   background-color: rgba(0, 0, 0, 0.507);
+//   color: whitesmoke;
+//   border-radius: 10px;
+//   padding: .5em;
+//   font-size: 14px;
+//   backdrop-filter: blur(10px);
+//   position: absolute;
+//   top: -2em;
+//   left: 0;
+//   // transform: translate(50% 0px) ;
+//   content: attr(after-text);
+// }
+// }
+
+#cover-bg{
+  position: relative;
+  overflow: hidden;
+  &::before{
+    position: absolute;
+    top: -10%;
+    bottom: -10%;
+    right: -10%;
+    left: -10%;
+    content: '';
+    background-image: var(--bg-url);
+    filter: blur(20px);
+  }
+  img{
+    position: relative;
+  }
 }
 </style>

@@ -5,9 +5,11 @@ import { Pop } from '@/utils/Pop.js';
 import { logger } from '@/utils/Logger.js';
 import { ticketsService } from '@/services/TicketsService.js';
 import TicketedEventCard from '@/components/TicketedEventCard.vue';
+import EventSmallCard from '@/components/EventSmallCard.vue';
 
 const account = computed(() => AppState.account)
 const ticketedEvents = computed(() => AppState.ticketedEvents)
+const creatorEvents = computed(() => AppState.creatorEvents)
 
 
 onMounted(() => {
@@ -18,7 +20,7 @@ async function getMyTicketedEvents() {
   try {
     await ticketsService.getTicketsByAccountId()
   }
-  catch (error){
+  catch (error) {
     Pop.error(error, 'Could not get events');
     logger.error('Could not get events'.toUpperCase(), error);
   }
@@ -27,23 +29,22 @@ async function getMyTicketedEvents() {
 </script>
 
 <template>
-  <div class="container text-gray">
+  <div v-if="account" class="container text-gray">
     <div class="row justify-content-center">
-      <div class="col-10">
-        <div v-if="account" class="d-flex gap-2 align-items-center mt-5">
+      <div class="col-md-10">
+        <div class="d-flex gap-2 align-items-center mt-5">
           <img class="rounded-pic" :src="account.picture" alt="" />
           <h2>{{ account.name }}</h2>
         </div>
-        <div v-else>
-          <h1>Loading... <i class="mdi mdi-loading mdi-spin"></i></h1>
-        </div>
+
       </div>
-      <div class="col-lg-10">
+      <!-- TODO Compute and list creator events correctly -->
+      <div v-if="creatorEvents.length > 0" class="col-lg-10">
         <div class="mt-5">
           <h3 class="fs-4">Your Created Events</h3>
           <div class="row">
-            <div class="col-md-6">
-              
+            <div v-for="creatorEvent in creatorEvents" :key="creatorEvent.id" class="col-md-6">
+              <EventSmallCard :towerEvent="creatorEvent" />
             </div>
           </div>
         </div>
@@ -54,11 +55,14 @@ async function getMyTicketedEvents() {
         </div>
         <div class="row">
           <div v-for="ticketedEvent in ticketedEvents" :key="ticketedEvent.id" class="col-md-6">
-              <TicketedEventCard :ticket="ticketedEvent"/>
+            <TicketedEventCard :ticket="ticketedEvent" />
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div v-else>
+    <h1>Loading... <i class="mdi mdi-loading mdi-spin"></i></h1>
   </div>
 </template>
 

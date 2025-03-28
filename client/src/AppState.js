@@ -8,6 +8,8 @@ export const AppState = reactive({
   account: null,
   /** @type {import('./models/TowerEvent.js').TowerEvent[]} events from the database*/
   towerEvents: [],
+  /** @type {import('./models/TowerEvent.js').TowerEvent[]} events created by the logged in user*/
+  creatorEvents: [],
   /** @type {import('./models/TowerEvent.js').TowerEvent} selected event from the database*/
   activeTowerEvent: null,
   /** @type {import('./models/Ticket.js').Attendee[]} ticket profiles saved to events from the database*/

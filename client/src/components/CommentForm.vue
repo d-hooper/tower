@@ -1,11 +1,15 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { towerCommentsService } from '@/services/TowerCommentsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute()
+
+const account = computed(() => AppState.account)
+
 
 const editableCommentData = ref({
   body: '',
@@ -28,7 +32,7 @@ async function postComment() {
 
 
 <template>
-  <form @submit.prevent="postComment">
+  <form v-if="account" @submit.prevent="postComment">
     <div class="form-floating my-3">
       <textarea v-model="editableCommentData.body" type="text" class="form-control" id="towerEventDescription"
                 placeholder="Event Details..." maxlength="1000" required>
@@ -39,6 +43,9 @@ async function postComment() {
       <button class="btn btn-success text-light" type="submit" title="Post Comment">Post Comment</button>
     </div>
   </form>
+  <div v-else>
+    <p class="mb-0 fs-4">Sign up or Log in to leave a comment</p>
+  </div>
 </template>
 
 

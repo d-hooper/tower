@@ -50,7 +50,6 @@ async function deleteTicket(ticketId) {
 }
 
 .event-img {
-  min-width: 35dvh;
   width: 100%;
   min-height: 25dvh;
   max-height: 25dvh;

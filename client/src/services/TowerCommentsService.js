@@ -21,7 +21,8 @@ class TowerCommentsService {
   async deleteComment(commentId) {
     const response = await api.delete(`api/comments/${commentId}`)
     logger.log(response.data)
-    
+    const index = AppState.towerComments.findIndex(comment => comment.id == commentId)
+    AppState.towerComments.splice(index, 1)
   }
 }
 
