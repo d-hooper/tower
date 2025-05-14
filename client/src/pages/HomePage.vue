@@ -43,8 +43,12 @@ async function getAllTowerEvents() {
 </script>
 
 <template>
-  <section class="container-fluid px-0">
-    <HeroSection />
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <HeroSection />
+      </div>
+    </div>
   </section>
   <section class="container">
     <TowerInfo />
